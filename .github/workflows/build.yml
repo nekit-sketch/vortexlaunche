@@ -5,7 +5,7 @@ on:
     branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
-  workflow_dispatch: # Позволяет запускать сборку вручную кнопкой
+  workflow_dispatch:
 
 jobs:
   build:
@@ -23,9 +23,10 @@ jobs:
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: 8.7
 
     - name: Build Debug APK
-      # Используем команду gradle, так как gradlew может отсутствовать
       run: gradle assembleDebug
 
     - name: Upload APK Artifact
